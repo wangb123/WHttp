@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.wbing.app_http">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!-- 是否正在debug -->
+        <meta-data
+            android:name="w_http_debug"
+            android:value="false" />
+        <!-- 测试域名 -->
+        <meta-data
+            android:name="w_http_host_debug"
+            android:value="http://api.m.huya.com/" />
+        <!-- 线上域名 -->
+        <meta-data
+            android:name="w_http_host_release"
+            android:value="http://api.m.huya.com/" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
