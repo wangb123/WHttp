@@ -73,11 +73,15 @@ public class PersistentCookieStore {
             }
         }
 
-        //讲cookies持久化到本地
-        SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
-        prefsWriter.putString(url.host(), TextUtils.join(",", cookies.get(url.host()).keySet()));
-        prefsWriter.putString(name, encodeCookie(new SerializableCookies(cookie)));
-        prefsWriter.apply();
+        //2018/11/5  修复当cookie一直未过期，包括第一次访问时的bug
+        if (cookies.containsKey(url.host())) {
+            //将cookies持久化到本地
+            SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
+            prefsWriter.putString(url.host(), TextUtils.join(",", cookies.get(url.host()).keySet()));
+            prefsWriter.putString(name, encodeCookie(new SerializableCookies(cookie)));
+            prefsWriter.apply();
+        }
+
     }
 
     public List<Cookie> get(HttpUrl url) {
